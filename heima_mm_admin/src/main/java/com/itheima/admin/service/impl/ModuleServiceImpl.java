@@ -36,7 +36,7 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
 
     @Override
     public List<ModuleAllItemVo> listAllModule() {
-        List<Module> moduleList = list(new QueryWrapper<Module>().eq("parent_id" ,""));
+        List<Module> moduleList = list(new QueryWrapper<Module>().isNull("parent_id" ));
         List<ModuleAllItemVo> list = moduleList.stream().map(module -> {
             ModuleAllItemVo moduleAllItemVo = new ModuleAllItemVo();
             moduleAllItemVo.setId(module.getModuleId());
