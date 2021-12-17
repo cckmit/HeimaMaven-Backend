@@ -61,7 +61,7 @@ public class UserServiceImpl implements IUserService {
         List<UserPageVo> list = page.getList().stream().map(user->{
             UserPageVo userPageVo = new UserPageVo();
             BeanUtils.copyProperties(user,userPageVo);
-            userPageVo.setStatus(user.getState().intValue());
+            userPageVo.setStatus(user.getState().intValueExact());
             return userPageVo;
         }).collect(Collectors.toList());
         return new PageVo<>(list, (int) page.getTotal());
