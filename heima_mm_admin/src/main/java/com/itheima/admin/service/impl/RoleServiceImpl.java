@@ -6,16 +6,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itheima.admin.PageVo;
 import com.itheima.admin.dto.RoleListDto;
-import com.itheima.admin.mapper.DeptMapper;
 import com.itheima.admin.mapper.RoleMapper;
-import com.itheima.admin.pojo.Dept;
 import com.itheima.admin.pojo.Role;
 import com.itheima.admin.service.IRoleService;
 import com.itheima.admin.vo.RoleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,14 +26,16 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     public PageVo<RoleVo> queryByPage(RoleListDto pageDto){
         IPage<Role> page = new Page<>(pageDto.getCurrentPage(),pageDto.getPageSize());
         QueryWrapper<Role> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("name",pageDto.getName());
+        if (pageDto.getName()!=null){
+            queryWrapper.like("name",pageDto.getName());
+        }
         IPage<Role> roleIPage = roleMapper.selectPage(page,queryWrapper);
         List<RoleVo> list =  roleIPage.getRecords().stream().map(role -> {
                     RoleVo roleVo = new RoleVo();
                     roleVo.setName(role.getName());
                     roleVo.setRoleId(role.getRoleId());
                     roleVo.setRemark(role.getRemark());
-                    roleVo.setCreateTime(new SimpleDateFormat("yyyy-MM-dd").format(role.getCreateTime()));
+                    roleVo.setCreateTime(role.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                     return roleVo;
                 }
         ).collect(Collectors.toList());

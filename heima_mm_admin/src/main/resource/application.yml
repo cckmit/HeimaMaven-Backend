@@ -1,6 +1,6 @@
 spring:
   jackson:
-    default-property-inclusion: non_null
+    #default-property-inclusion: non_null
   datasource:
     username: root
     password: 123456
@@ -30,7 +30,7 @@ spring:
 server:
   tomcat:
     uri-encoding: utf-8
-  port: 8888
+  port: 9000
 
 pagehelper:
   reasonable: true

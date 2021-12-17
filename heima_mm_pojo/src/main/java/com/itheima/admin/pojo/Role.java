@@ -24,6 +24,6 @@ public class Role {
     private LocalDateTime createTime;
     private String updateBy;
     @TableField(fill = FieldFill.UPDATE)
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
 }

@@ -9,7 +9,6 @@ import com.itheima.admin.vo.ModuleAddVo;
 import com.itheima.admin.vo.ModuleAllItemVo;
 import com.itheima.admin.vo.ModuleQueryVo;
 import com.itheima.admin.vo.ModuleVo;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/module")
+@CrossOrigin
 public class ModuleController {
 
     @Resource
@@ -36,7 +36,7 @@ public class ModuleController {
     @PostMapping("/add")
     public Result<Object> addModule(@RequestBody ModuleAddVo moduleAddVo){
         Module module = new Module();
-        if (StringUtils.isNotEmpty(moduleAddVo.getParentId())){
+        if (moduleAddVo.getParentId()==null){
             module.setParentName(moduleService.getById(module.getModuleId()).getName());
         }
         BeanUtils.copyProperties(moduleAddVo, module);

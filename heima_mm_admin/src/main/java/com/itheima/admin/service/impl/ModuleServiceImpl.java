@@ -11,7 +11,6 @@ import com.itheima.admin.pojo.Module;
 import com.itheima.admin.service.IModuleService;
 import com.itheima.admin.vo.ModuleAllItemVo;
 import com.itheima.admin.vo.ModuleVo;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,9 @@ public class ModuleServiceImpl extends ServiceImpl<ModuleMapper, Module> impleme
     public PageVo<ModuleVo> listModuleVoPage(ModulePageDto modulePageDto) {
         IPage<Module> page = new Page<>(modulePageDto.getCurrentPage(), modulePageDto.getPageSize());
         QueryWrapper<Module> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("name", modulePageDto.getName());
+        if (modulePageDto.getName() != null){
+            queryWrapper.like("name", modulePageDto.getName());
+        }
         IPage<Module> moduleIPage = moduleMapper.selectPage(page, queryWrapper);
         List<ModuleVo> list = moduleIPage.getRecords().stream().map(ModuleVo::fromModule
         ).collect(Collectors.toList());

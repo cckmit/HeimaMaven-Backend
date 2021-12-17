@@ -15,11 +15,12 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping
+@CrossOrigin
 public class UserController {
     @Resource
     IUserService userService;
 
-    @PostMapping("/user/{id}")
+    @GetMapping("/user/{id}")
     public UserVo queryById(@PathVariable("id") String id) {
         return userService.queryById(id);
     }
@@ -45,6 +46,9 @@ public class UserController {
     public PageVo<UserPageVo> queryByPage(@RequestBody UserPageDto userPageDto) {
         if (userPageDto == null) {
             return new PageVo<>(null, 0);
+        }
+        if (userPageDto.getUsername() == null){
+            userPageDto.setUsername("");
         }
         return userService.queryByPage(userPageDto);
     }

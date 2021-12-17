@@ -43,14 +43,14 @@
         where user_id = #{userId}
     </update>
 
-    <select id="selectByPage" resultType="com.itheima.admin.pojo.User">
+     <select id="selectByPage" resultType="com.itheima.admin.pojo.User">
         select * from ss_user
         <where>
-            <if test="state != null">
-                and state = #{state}
+            <if test="status != null">
+                and state = #{status}
             </if>
             <if test="username != null">
-                and user_name = CONCAT('%',#{username},'%')
+                and user_name like CONCAT('%',#{username},'%')
             </if>
         </where>
     </select>

@@ -11,5 +11,5 @@ import java.util.List;
 public interface IDeptService extends IService<Dept> {
     List<DeptVo> listAllDeptVo();
 
-    PageVo<Object> queryByPage(DeptPageDto deptPageDto);
+    PageVo<DeptVo> queryByPage(DeptPageDto deptPageDto);
 }

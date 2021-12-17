@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -21,7 +21,7 @@ public class User {
     private String userName;
     private String station;
     private String password;
-    private Integer state;
+    private BigDecimal state;
     private String managerId;
     private String gender;
     private String telephone;
@@ -36,8 +36,8 @@ public class User {
     private String createBy;
     private String create_dept;
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
+    private Date createTime;
     private String updateBy;
     @TableField(fill = FieldFill.UPDATE)
-    private LocalDateTime updateTime;
+    private Date updateTime;
 }

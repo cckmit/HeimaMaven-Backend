@@ -16,6 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping
+@CrossOrigin
 public class DepartmentController {
     @Resource
     IDeptService deptService;
@@ -59,7 +60,7 @@ public class DepartmentController {
     }
 
     @PostMapping("/dept/list")
-    public PageVo<Object> getDepartmentPage(@RequestBody DeptPageDto deptPageDto){
+    public PageVo<DeptVo> getDepartmentPage(@RequestBody DeptPageDto deptPageDto){
         if (deptPageDto == null) {
             return new PageVo<>(null, 0);
         }

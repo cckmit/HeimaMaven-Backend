@@ -1,12 +1,10 @@
 package com.itheima.admin.mapper;
 
-import com.github.pagehelper.IPage;
-import com.github.pagehelper.PageInfo;
 import com.itheima.admin.pojo.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public interface UserMapper {
             "#{birthday}, #{joinDate}, #{telephone})")
     boolean addUser(User user);
 
-    List<User> selectByPage(int status, String username);
+    List<User> selectByPage(@Param("status") int status,@Param("username") String username);
 
     boolean updataUser(User user);
 }
