@@ -1,0 +1,20 @@
+package com.itheima.admin.pojo;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value = "ss_dept")
+public class Dept {
+    @TableId(value = "dept_id", type = IdType.ASSIGN_UUID)
+    String deptId;
+    String deptName;
+    String parentId;
+    String state;
+}
