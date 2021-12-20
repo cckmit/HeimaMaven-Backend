@@ -11,11 +11,13 @@
         <h2 class="form-signin-heading">Please sign in</h2>
         <p>
             <label for="username" class="sr-only">Username</label>
-            <input type="text" id="username" name="username"  v-model="user.username" class="form-control" placeholder="Username" required autofocus>
+            <input type="text" id="username" name="username" v-model="user.username" class="form-control"
+                   placeholder="Username" required autofocus>
         </p>
         <p>
             <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" v-model="user.password" name="password" class="form-control" placeholder="Password" required>
+            <input type="password" id="password" v-model="user.password" name="password" class="form-control"
+                   placeholder="Password" required>
         </p>
         <button class="btn btn-lg btn-primary btn-block" type="button" @click="login">Sign in</button>
     </form>
@@ -24,20 +26,20 @@
 <script src="js/axios-0.18.0.js"></script>
 <script>
     new Vue({
-        el:"#app",
-        data:{
-            user:{}
+        el: "#app",
+        data: {
+            user: {}
         },
-        methods:{
-            login(){
-                axios.post("/login",'username='+this.user.username+'&password='+this.user.password,{
+        methods: {
+            login() {
+                axios.post("/login", 'username=' + this.user.username + '&password=' + this.user.password, {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     }
-                }).then((res)=>{
+                }).then((res) => {
                     console.log(res.data.msg);
-                    if(res.data.msg == "登录成功") {
-                        location.href="/index.html";
+                    if (res.data.msg == "登录成功") {
+                        location.href = "/index.html";
                     }
 
                 });

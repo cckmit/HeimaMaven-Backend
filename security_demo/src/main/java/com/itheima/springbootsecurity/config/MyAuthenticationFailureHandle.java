@@ -24,8 +24,8 @@ public class MyAuthenticationFailureHandle implements AuthenticationFailureHandl
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         response.setContentType("application/json;charset=utf-8");
         Map map = new HashMap<>();
-        map.put("flag",false);
-        map.put("msg","用户名或密码错误");
+        map.put("flag", false);
+        map.put("msg", "用户名或密码错误");
         String s = JSON.toJSONString(map);
         response.getWriter().write(s);
     }

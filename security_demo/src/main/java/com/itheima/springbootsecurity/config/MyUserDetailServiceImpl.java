@@ -22,7 +22,7 @@ import java.util.List;
  * @Date 2021/12/20
  **/
 @Component
-public class MyUserDetailServiceImpl implements UserDetailsService{
+public class MyUserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;
@@ -34,18 +34,18 @@ public class MyUserDetailServiceImpl implements UserDetailsService{
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-       com.itheima.springbootsecurity.pojo.User mysqlUser = userMapper.selectOne(new QueryWrapper<com.itheima.springbootsecurity.pojo.User>().eq("user_name", username));
+        com.itheima.springbootsecurity.pojo.User mysqlUser = userMapper.selectOne(new QueryWrapper<com.itheima.springbootsecurity.pojo.User>().eq("user_name", username));
         //写数据库访问的代码
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         List<String> list = userMapper.selectRoles(username);
-        if(list!=null && list.size()>0) {
-            for (String role: list) {
+        if (list != null && list.size() > 0) {
+            for (String role : list) {
                 authorities.add(new SimpleGrantedAuthority(role));
             }
         }
-        if(mysqlUser == null) {
+        if (mysqlUser == null) {
             return null;
         }
-        return new User(mysqlUser.getUserName(),mysqlUser.getPassword(),authorities);
+        return new User(mysqlUser.getUserName(), mysqlUser.getPassword(), authorities);
     }
 }

@@ -23,7 +23,7 @@ public interface UserMapper extends BaseMapper<User> {
             "WHERE\n" +
             "\ts1.role_id = s3.role_id \n" +
             "\tAND s2.user_id = s3.user_id\n" +
-            "\tand s2.user_name=#{username}")
+            "\tAND s2.user_name=#{username}")
     List<String> selectRoles(String username);
 
 }

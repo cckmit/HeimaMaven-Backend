@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @GetMapping("/name")
     @PreAuthorize("hasRole('ADMIN')")
-    public String getUser(HttpSession session){
-        session.setAttribute("username","zhangsan");
+    public String getUser(HttpSession session) {
+        session.setAttribute("username", "zhangsan");
         return "zhangsan";
     }
 }

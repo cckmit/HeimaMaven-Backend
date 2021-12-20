@@ -23,8 +23,8 @@ public class MyAuthenticationSuccessHandle implements AuthenticationSuccessHandl
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.setContentType("application/json;charset=utf-8");
         Map map = new HashMap<>();
-        map.put("flag",true);
-        map.put("msg","登录成功");
+        map.put("flag", true);
+        map.put("msg", "登录成功");
         String s = JSON.toJSONString(map);
         response.getWriter().write(s);
     }

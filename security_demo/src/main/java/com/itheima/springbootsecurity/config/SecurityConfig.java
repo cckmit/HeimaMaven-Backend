@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  **/
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()//开启http的安全控制
-                .antMatchers("/index.html","/login.html","/js/**","/favicon.ico").permitAll()
+                .antMatchers("/index.html", "/login.html", "/js/**", "/favicon.ico").permitAll()
                 .antMatchers("/admin/admin.html").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -47,8 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout().logoutSuccessUrl("/login.html");
 
 
-
     }
+
     @Bean
     public MyUserDetailServiceImpl myUserDetailService() {
         return new MyUserDetailServiceImpl();
