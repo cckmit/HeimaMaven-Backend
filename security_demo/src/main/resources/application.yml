@@ -1,0 +1,11 @@
+spring:
+  security:
+    user:
+      name: admin
+      password: 123456
+
+  datasource:
+    url: jdbc:mysql://10.54.27.176/heima_mm
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
