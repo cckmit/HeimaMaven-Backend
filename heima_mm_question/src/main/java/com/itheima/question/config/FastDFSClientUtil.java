@@ -3,8 +3,10 @@ package com.itheima.question.config;
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.domain.proto.storage.DownloadCallback;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
+import com.itheima.common.constants.RedisPicConstants;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +20,9 @@ public class FastDFSClientUtil {
     @Autowired
     private FastFileStorageClient storageClient;
 
+    @Autowired
+    RedisTemplate<String, String> redisTemplate;
+
     /**
      * 上传
      * @param file
@@ -25,7 +30,8 @@ public class FastDFSClientUtil {
      * @throws IOException
      */
     public String uploadFile(MultipartFile file) throws IOException {
-        StorePath storePath = storageClient.uploadFile((InputStream) file.getInputStream(), file.getSize(), FilenameUtils.getExtension(file.getOriginalFilename()), null);
+        StorePath storePath = storageClient.uploadFile(file.getInputStream(), file.getSize(), FilenameUtils.getExtension(file.getOriginalFilename()), null);
+        redisTemplate.opsForSet().add(RedisPicConstants.ALL_PIC, storePath.getFullPath());
         return storePath.getFullPath();
     }
 

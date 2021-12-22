@@ -4,13 +4,18 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 import com.itheima.admin.PageVo;
+import com.itheima.common.constants.RedisPicConstants;
 import com.itheima.question.dto.QuestionDto;
 import com.itheima.question.dto.QuestionPageDto;
 import com.itheima.question.mapper.QuestionMapper;
 import com.itheima.question.pojo.Question;
 import com.itheima.question.service.QuestionService;
 import com.itheima.question.vo.QuestionVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,9 +30,20 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
     @Resource
     QuestionMapper questionMapper;
 
+    @Value("${fileServerUrl}")
+    private String fileServerUrl;
+
+    @Autowired
+    RedisTemplate<String, String> redisTemplate;
+
     @Override
     public boolean addQuestion(QuestionDto questionDto) {
-        return save(questionDto.toQuestion());
+        int id = questionMapper.insert(questionDto.toQuestion());
+        boolean result = SqlHelper.retBool(id);
+        if (result){
+            redisTemplate.opsForSet().add(RedisPicConstants.audit_question, String.valueOf(id));
+        }
+        return result;
     }
 
     @Override

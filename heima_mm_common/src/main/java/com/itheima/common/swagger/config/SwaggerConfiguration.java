@@ -1,4 +1,4 @@
-package com.heima.common.swagger.config;
+package com.itheima.common.swagger.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
