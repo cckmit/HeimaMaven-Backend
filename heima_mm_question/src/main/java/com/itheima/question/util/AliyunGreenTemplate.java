@@ -14,7 +14,9 @@ import com.aliyuncs.http.ProtocolType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -22,17 +24,18 @@ import java.util.*;
  * @create: 2021-05-31 00:46
  */
 @Slf4j
+@Component
 public class AliyunGreenTemplate {
 
     private IAcsClient client;
 
-    private GreenProperties greenProperties;
+    @Resource
+    GreenProperties greenProperties;
 
-    public AliyunGreenTemplate(GreenProperties greenProperties) {
-        this.greenProperties = greenProperties;
+    public AliyunGreenTemplate() {
         try {
             IClientProfile profile = DefaultProfile
-                    .getProfile("cn-shanghai", greenProperties.getAccessKeyID(), greenProperties.getAccessKeySecret());
+                    .getProfile("cn-shanghai", greenProperties.accessKeyId, greenProperties.accessKeySecret);
             DefaultProfile
                     .addEndpoint("cn-shanghai", "cn-shanghai", "Green", "green.cn-shanghai.aliyuncs.com");
             client = new DefaultAcsClient(profile);
@@ -156,7 +159,7 @@ public class AliyunGreenTemplate {
      */
     public Map imageScan(List<String> imageList) throws Exception {
         IClientProfile profile = DefaultProfile
-                .getProfile("cn-shanghai", greenProperties.getAccessKeyID(), greenProperties.getAccessKeySecret());
+                .getProfile("cn-shanghai", greenProperties.getAccessKeyId(), greenProperties.getAccessKeySecret());
         ImageSyncScanRequest imageSyncScanRequest = new ImageSyncScanRequest();
         // 指定api返回格式
         imageSyncScanRequest.setAcceptFormat(FormatType.JSON);

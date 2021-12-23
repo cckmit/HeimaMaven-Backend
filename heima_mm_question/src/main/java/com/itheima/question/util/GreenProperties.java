@@ -1,22 +1,24 @@
 package com.itheima.question.util;
 
 import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
+@ConfigurationProperties(prefix = "tanhua.green")
 public class GreenProperties {
     /**
      * 账号
      */
-    String accessKeyID;
+    public String accessKeyId;
     /**
      * 密钥
      */
-    String accessKeySecret;
+    public String accessKeySecret;
 
     /**
      * 场景
      */
-    String scenes;
+    public String scenes;
 }

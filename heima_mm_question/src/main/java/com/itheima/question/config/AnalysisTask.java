@@ -9,7 +9,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,13 +17,13 @@ import java.util.Set;
 @Component
 public class AnalysisTask {
 
-    @Resource
+    @Autowired
     RedisTemplate<String, String> redisTemplate;
     @Autowired
     FastDFSClientUtil fastDFSClientUtil;
-    @Resource
+    @Autowired
     private AliyunGreenTemplate aliyunGreenTemplate;
-    @Resource
+    @Autowired
     QuestionMapper questionMapper;
 
     @Scheduled( cron = "0/5 * * * * ? ")
