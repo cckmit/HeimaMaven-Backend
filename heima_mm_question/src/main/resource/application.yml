@@ -1,9 +1,3 @@
-tanhua:
-  green:
-    accessKeyId: LTAI4GKgob9vZ53k2SZdyAC7
-    accessKeySecret: LHLBvXmILRoyw0niRSBuXBZewQ30la
-    scenes: porn,terrorism #色情，暴力
-
 spring:
   jackson:
   #default-property-inclusion: non_null
@@ -30,6 +24,10 @@ spring:
       enabled: detect
   main:
     banner-mode: console
+  profiles:
+    active: default
+    include:
+      aliyun
   redis:
     # 地址
     host: 10.54.27.176

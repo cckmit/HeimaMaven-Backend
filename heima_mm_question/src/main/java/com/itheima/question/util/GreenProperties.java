@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "tanhua.green")
+@ConfigurationProperties(prefix = "aliyun.green")
 public class GreenProperties {
     /**
      * 账号

@@ -14,9 +14,9 @@ import com.aliyuncs.http.ProtocolType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -28,11 +28,11 @@ import java.util.*;
 public class AliyunGreenTemplate {
 
     private IAcsClient client;
+    private GreenProperties greenProperties;
 
-    @Resource
-    GreenProperties greenProperties;
-
-    public AliyunGreenTemplate() {
+    @Autowired
+    public AliyunGreenTemplate(GreenProperties greenProperties) {
+        this.greenProperties = greenProperties;
         try {
             IClientProfile profile = DefaultProfile
                     .getProfile("cn-shanghai", greenProperties.accessKeyId, greenProperties.accessKeySecret);
