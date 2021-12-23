@@ -1,4 +1,4 @@
-package com.itheima.question.util;
+package com.itheima.common.safe;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;

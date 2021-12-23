@@ -2,7 +2,7 @@ package com.itheima.question.controller;
 
 import com.itheima.admin.PageVo;
 import com.itheima.admin.Result;
-import com.itheima.question.config.FastDFSClientUtil;
+import com.itheima.common.fastdfs.FastDFSClientUtil;
 import com.itheima.question.dto.QuestionDto;
 import com.itheima.question.dto.QuestionPageDto;
 import com.itheima.question.pojo.Question;

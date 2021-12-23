@@ -1,7 +1,7 @@
-package com.itheima.question.timer;
+package com.itheima.mm.task;
 
 import com.itheima.common.constants.RedisPicConstants;
-import com.itheima.question.config.FastDFSClientUtil;
+import com.itheima.common.fastdfs.FastDFSClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;

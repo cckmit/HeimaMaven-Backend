@@ -1,4 +1,4 @@
-package com.itheima.question.util;
+package com.itheima.common.safe;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

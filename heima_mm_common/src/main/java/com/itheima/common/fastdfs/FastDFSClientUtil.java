@@ -1,4 +1,4 @@
-package com.itheima.question.config;
+package com.itheima.common.fastdfs;
 
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.domain.proto.storage.DownloadCallback;

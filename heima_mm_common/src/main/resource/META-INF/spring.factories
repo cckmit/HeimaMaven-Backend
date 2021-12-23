@@ -1,2 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.itheima.common.swagger.config.SwaggerConfiguration
+  com.itheima.common.swagger.config.SwaggerConfiguration,\
+  com.itheima.common.fastdfs.FdfsConfiguration,\
+  com.itheima.common.safe.AliyunGreenConfiguration

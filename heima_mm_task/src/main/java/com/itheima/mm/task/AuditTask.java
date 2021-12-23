@@ -1,12 +1,12 @@
-package com.itheima.question.timer;
+package com.itheima.mm.task;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.itheima.common.constants.RedisPicConstants;
-import com.itheima.question.mapper.QuestionItemMapper;
-import com.itheima.question.mapper.QuestionMapper;
+import com.itheima.mm.mapper.QuestionItemMapper;
+import com.itheima.mm.mapper.QuestionMapper;
+import com.itheima.common.safe.AliyunGreenTemplate;
 import com.itheima.question.pojo.Question;
 import com.itheima.question.pojo.QuestionItem;
-import com.itheima.question.util.AliyunGreenTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -28,7 +28,7 @@ public class AuditTask {
     @Autowired
     QuestionItemMapper questionItemMapper;
 
-    @Scheduled(cron = "0 0 2 * * ? ")
+    @Scheduled(cron = "0/10 * * * * ? ")
     public void auditQuestion() throws Exception {
         Set<String> ids = redisTemplate.opsForSet().members(RedisPicConstants.audit_question);
         if (ids == null) {
@@ -58,13 +58,15 @@ public class AuditTask {
             if (!"pass".equals(textScanResult.get("suggestion"))) {
                 question.setReviewStatus("2");
                 questionMapper.updateById(question);
+                redisTemplate.opsForSet().remove(RedisPicConstants.audit_question, id);
+                continue;
             }
 
             if (!"pass".equals(imageScanResult.get("suggestion"))) {
                 question.setReviewStatus("2");
                 questionMapper.updateById(question);
+                redisTemplate.opsForSet().remove(RedisPicConstants.audit_question, id);
             }
-            redisTemplate.opsForSet().remove(RedisPicConstants.audit_question, id);
         }
     }
 }
