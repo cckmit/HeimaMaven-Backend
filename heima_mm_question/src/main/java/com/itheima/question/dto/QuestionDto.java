@@ -15,7 +15,7 @@ public class QuestionDto {
     private String analysis;
     private String picture;
 
-    public Question toQuestion(){
+    public Question toQuestion() {
         Question question = new Question();
         question.setCompanyId(companyId);
         question.setCatalogId(catalogId);

@@ -31,34 +31,34 @@ public class QuestionController {
 
     @PostMapping("/add")
     public Result<Object> addQuestion(@RequestBody QuestionDto questionDto) {
-        if(questionService.addQuestion(questionDto)) {
-            return new Result<>(true,"添加成功",questionDto);
+        if (questionService.addQuestion(questionDto)) {
+            return new Result<>(true, "添加成功", questionDto);
         }
-        return new Result<>(false,"添加失败",null);
+        return new Result<>(false, "添加失败", null);
     }
 
     @PostMapping("/list")
-    public PageVo<QuestionVo> listQuestionVo(@RequestBody QuestionPageDto questionPageDto){
+    public PageVo<QuestionVo> listQuestionVo(@RequestBody QuestionPageDto questionPageDto) {
         return questionService.listQuestionVo(questionPageDto);
     }
 
     @GetMapping("/{id}")
-    public QuestionDto getQuestionById(@PathVariable String id){
+    public QuestionDto getQuestionById(@PathVariable String id) {
         Question question = questionService.getById(id);
         return question.toQuestionDto();
     }
 
     @PostMapping("/upload")
-    public OssVo uploadImg(MultipartFile file){
+    public OssVo uploadImg(MultipartFile file) {
         try {
-            if(file == null){
+            if (file == null) {
                 throw new RuntimeException("文件不存在");
             }
             String fileId = fastDFSClientUtil.uploadFile(file);
-            return OssVo.builder().imgUrl(fileServerUrl+fileId).build();
+            return OssVo.builder().imgUrl(fileServerUrl + fileId).build();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        throw new  RuntimeException("文件上传失败");
+        throw new RuntimeException("文件上传失败");
     }
 }

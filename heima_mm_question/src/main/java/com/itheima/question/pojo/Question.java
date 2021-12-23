@@ -27,9 +27,9 @@ public class Question {
     private String reviewStatus;
     private String createBy;
     private String createDept;
-    private Date   createTime;
+    private Date createTime;
     private String updateBy;
-    private Date   updateTime;
+    private Date updateTime;
     private String companyId;
     private String companyName;
     private String picture;

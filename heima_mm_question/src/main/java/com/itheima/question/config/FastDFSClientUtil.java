@@ -25,6 +25,7 @@ public class FastDFSClientUtil {
 
     /**
      * 上传
+     *
      * @param file
      * @return
      * @throws IOException
@@ -37,6 +38,7 @@ public class FastDFSClientUtil {
 
     /**
      * 删除
+     *
      * @param filePath
      */
     public void delFile(String filePath) {
@@ -46,6 +48,7 @@ public class FastDFSClientUtil {
 
     /**
      * 下载
+     *
      * @param groupName
      * @param path
      * @return

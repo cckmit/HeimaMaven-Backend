@@ -22,14 +22,14 @@ public class FileUploadController {
     private String fileServerUrl;
 
     @PostMapping("/upload")
-    public String uploadFile(MultipartFile file){
+    public String uploadFile(MultipartFile file) {
         try {
             //判断文件是否存在
-            if(file == null){
+            if (file == null) {
                 throw new RuntimeException("文件不存在");
             }
             String fileId = fastDFSClientUtil.uploadFile(file);
-            return fileServerUrl+fileId;
+            return fileServerUrl + fileId;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,12 +37,13 @@ public class FileUploadController {
         return "文件上传失败";
 
     }
+
     @GetMapping("/del")
-    public String delFile(String fileId){
+    public String delFile(String fileId) {
         try {
             fastDFSClientUtil.delFile(fileId);
             return "删除成功";
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "删除失败";

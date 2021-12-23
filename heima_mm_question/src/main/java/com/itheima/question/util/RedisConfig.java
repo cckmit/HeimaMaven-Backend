@@ -12,6 +12,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * Copyright (c) 2021
+ *
  * @Project: SpringbootDemo
  * @Author: Finger
  * @FileName: RedisConfig.java

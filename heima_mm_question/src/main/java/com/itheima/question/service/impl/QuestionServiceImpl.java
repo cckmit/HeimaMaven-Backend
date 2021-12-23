@@ -40,7 +40,7 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
     public boolean addQuestion(QuestionDto questionDto) {
         int id = questionMapper.insert(questionDto.toQuestion());
         boolean result = SqlHelper.retBool(id);
-        if (result){
+        if (result) {
             redisTemplate.opsForSet().add(RedisPicConstants.audit_question, String.valueOf(id));
         }
         return result;

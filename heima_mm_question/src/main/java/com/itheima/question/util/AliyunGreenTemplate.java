@@ -157,7 +157,7 @@ public class AliyunGreenTemplate {
     /**
      * 阿里云图片内容安全
      */
-    public Map imageScan(List<String> imageList) throws Exception {
+    public Map<String, String> imageScan(List<String> imageList) throws Exception {
         IClientProfile profile = DefaultProfile
                 .getProfile("cn-shanghai", greenProperties.getAccessKeyId(), greenProperties.getAccessKeySecret());
         ImageSyncScanRequest imageSyncScanRequest = new ImageSyncScanRequest();
@@ -198,7 +198,7 @@ public class AliyunGreenTemplate {
             list.add(task);
         }
 
-        httpBody.put("tasks",list);
+        httpBody.put("tasks", list);
 
         imageSyncScanRequest.setHttpContent(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(httpBody.toJSONString()),
                 "UTF-8", FormatType.JSON);

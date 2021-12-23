@@ -1,4 +1,3 @@
-
 package com.itheima.question.vo;
 
 import com.itheima.question.pojo.Question;
