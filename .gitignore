@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/heima_mm_question/src/main/resource/application-aliyun.yml
