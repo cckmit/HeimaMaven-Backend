@@ -2,9 +2,9 @@ package com.itheima.mm.task;
 
 import com.itheima.common.constants.RedisPicConstants;
 import com.itheima.common.fastdfs.FastDFSClientUtil;
+import com.xxl.job.core.handler.annotation.XxlJob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -17,7 +17,8 @@ public class AnalysisTask {
     @Autowired
     FastDFSClientUtil fastDFSClientUtil;
 
-    @Scheduled(cron = "0/5 * * * * ? ")
+    @XxlJob("clearPic")
+    //@Scheduled(cron = "0/5 * * * * ? ")
     public void clearPic() {
         Set<String> pics = redisTemplate.opsForSet()
                 .difference(RedisPicConstants.ALL_PIC, RedisPicConstants.USE_PIC);

@@ -10,6 +10,9 @@ spring:
     host: 10.54.27.176
     # 端口号
     port: 6379
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     username: root
     password: 123456
@@ -28,3 +31,11 @@ spring:
 
 server:
   port: 9091
+
+xxl:
+  job:
+    admin:
+      addresses: http://localhost:8080/xxl-job-admin
+    executor:
+      appname: heima-mm-task
+      port: 9998
